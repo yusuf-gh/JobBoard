@@ -85,7 +85,7 @@ class BlankResume(models.Model):
     location = models.CharField()  # временно Charfield позже будет заменен на географическое поле
     linkedin = models.URLField(blank=True, null=True)
     website = models.URLField(blank=True, null=True)
-    photo = models.ImageField(upload_to=user_directory_path(), blank=True, null=True, verbose_name='Фото')
+    photo = models.ImageField(upload_to=user_directory_path, blank=True, null=True, verbose_name='Фото')
 
 
     @property
@@ -100,9 +100,6 @@ class BlankResume(models.Model):
     def email(self):
         return f"{self.user.email}"
 
-    @property
-    def photo(self):
-        return self.user.profile.photo if self.user.profile else None
 
 
 
